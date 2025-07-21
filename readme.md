@@ -57,7 +57,7 @@ The interactive control panel is positioned in the **top-left corner** of the sc
 * **"Toggle Dark/Light Mode" Button:** Click to switch the UI theme between the default dark mode and a complementary light mode.
 
 ## Project Structure
-SakshiDesai.zip/             <-- This is the single main folder for submission
+
 ├── index.html             <-- The primary HTML file that loads the simulation.
 ├── script.js              <-- Contains all JavaScript logic, including Three.js setup, animation, and UI interactions.
 ├── style.css              <-- Defines the styling for the web page, control panel, and tooltips.
