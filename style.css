@@ -1,0 +1,443 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Control Panel Styles */
+#controls {
+    position: absolute;
+    top: 15px; /* Slightly reduced top margin */
+    left: 15px; /* Slightly reduced left margin */
+    right: auto;
+    background: rgba(10, 10, 10, 0.9); /* Very dark background for the panel */
+    border: 1px solid #333;
+    border-radius: 6px; /* Reduced border-radius */
+    padding: 8px; /* NEW: Significantly reduced padding for much smaller size */
+    min-width: 200px; /* NEW: Further reduced minimum width */
+    max-width: 250px; /* NEW: Defined a smaller max-width */
+    max-height: 70vh; /* NEW: Reduced max-height for vertical compactness */
+    overflow-y: auto;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for depth */
+}
+
+.control-header {
+    text-align: center;
+    margin-bottom: 8px; /* NEW: Reduced margin */
+    font-size: 13px; /* NEW: Smaller font size */
+    color: #E0E0E0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px; /* NEW: Reduced padding */
+    font-weight: bold;
+}
+
+/* Planet Control Styles */
+.planet-control {
+    margin-bottom: 6px; /* NEW: Reduced margin */
+    padding: 5px; /* NEW: Reduced padding */
+    border: 1px solid #444;
+    border-radius: 3px; /* Reduced border-radius */
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.planet-control:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.planet-name {
+    font-weight: bold;
+    margin-bottom: 3px; /* NEW: Reduced margin */
+    font-size: 11px; /* NEW: Smaller font size */
+    color: #B0B0B0;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* NEW: Reduced gap */
+}
+
+/* Slider Styles */
+.speed-slider {
+    flex: 1;
+    height: 3px;
+    background: #555;
+    border-radius: 3px; /* Reduced border-radius */
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.speed-slider:hover {
+    background: #666;
+}
+
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px; /* NEW: Even smaller thumb */
+    height: 10px; /* NEW: Even smaller thumb */
+    background: #888;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.speed-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.speed-slider::-moz-range-thumb {
+    width: 10px; /* NEW: Even smaller thumb */
+    height: 10px; /* NEW: Even smaller thumb */
+    background: #888;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease;
+}
+
+.speed-slider::-moz-range-thumb:hover {
+    transform: scale(1.15);
+}
+
+.speed-value {
+    min-width: 35px; /* NEW: Further reduced min-width */
+    text-align: center;
+    font-size: 9px; /* NEW: Smaller font size */
+    color: #AAAAAA;
+    font-weight: bold;
+}
+
+/* Global Controls */
+.global-controls {
+    margin-top: 10px; /* NEW: Reduced margin */
+    padding-top: 8px; /* NEW: Reduced padding */
+    border-top: 1px solid #444;
+}
+
+.control-button {
+    width: 100%;
+    padding: 6px; /* NEW: Reduced padding */
+    margin-bottom: 5px; /* NEW: Reduced margin */
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px; /* Reduced border-radius */
+    cursor: pointer;
+    font-size: 11px; /* NEW: Smaller font size */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover {
+    background: #555;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.control-button.pause {
+    background: #ff6b6b;
+}
+
+.control-button.pause:hover {
+    background: #ff5252;
+}
+
+/* Loading Screen */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px; /* Slightly smaller loading text */
+    color: #DDDDDD;
+    text-align: center;
+    z-index: 1001;
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    animation: loading-dots 1.4s infinite;
+}
+
+@keyframes loading-dots {
+    0%, 61.5% {
+        content: '';
+    }
+    25% {
+        content: '.';
+    }
+    50% {
+        content: '..';
+    }
+    75% {
+        content: '...';
+    }
+}
+
+/* Planet-specific colors for better identification (these remain the same as they are for planets, not the UI) */
+.planet-control[data-planet="Mercury"] .planet-name {
+    color: #8C7853;
+}
+
+.planet-control[data-planet="Venus"] .planet-name {
+    color: #FFC649;
+}
+
+.planet-control[data-planet="Earth"] .planet-name {
+    color: #6B93D6;
+}
+
+.planet-control[data-planet="Mars"] .planet-name {
+    color: #CD5C5C;
+}
+
+.planet-control[data-planet="Jupiter"] .planet-name {
+    color: #D8CA9D;
+}
+
+.planet-control[data-planet="Saturn"] .planet-name {
+    color: #FAD5A5;
+}
+
+.planet-control[data-planet="Uranus"] .planet-name {
+    color: #4FD0E7;
+}
+
+.planet-control[data-planet="Neptune"] .planet-name {
+    color: #4B70DD;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #controls {
+        position: fixed; /* Keep fixed at bottom for mobile */
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        max-height: 35vh; /* Further reduced max-height for mobile */
+        border-radius: 6px 6px 0 0;
+        min-width: auto;
+        margin: 0;
+        padding: 8px; /* Adjusted padding for mobile */
+    }
+
+    .control-header {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .planet-control {
+        margin-bottom: 5px;
+        padding: 4px;
+    }
+
+    .planet-name {
+        font-size: 10px;
+    }
+
+    .speed-value {
+        min-width: 30px;
+        font-size: 8px;
+    }
+
+    .control-button {
+        padding: 6px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #controls {
+        padding: 6px;
+        max-height: 30vh;
+    }
+
+    .control-header {
+        font-size: 12px;
+    }
+
+    .planet-name {
+        font-size: 9px;
+    }
+}
+
+/* Scrollbar styling for controls panel */
+#controls::-webkit-scrollbar {
+    width: 4px; /* Thinner scrollbar */
+}
+
+#controls::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+}
+
+#controls::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 2px;
+}
+
+#controls::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+
+/* Tooltip Styles */
+.planet-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 4px 6px; /* Further reduced padding */
+    border-radius: 3px;
+    font-size: 11px; /* Smaller font size */
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    transform: translate(-50%, -6px); /* Adjusted offset */
+    z-index: 1002;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.planet-tooltip.active {
+    opacity: 1;
+}
+
+.planet-tooltip .tooltip-name {
+    font-weight: bold;
+    color: #CCCCCC;
+}
+
+.planet-tooltip .tooltip-description {
+    font-size: 9px; /* Smaller font size */
+    color: #A0A0A0;
+}
+
+
+/* Dark/Light Toggle Styles */
+body.light-mode {
+    background: #F8F8F8;
+    color: #333;
+}
+
+body.light-mode #controls {
+    background: rgba(240, 240, 240, 0.95);
+    border: 1px solid #CCC;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .control-header {
+    color: #555;
+    border-bottom-color: #DDD;
+}
+
+body.light-mode .planet-control {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid #DDD;
+}
+
+body.light-mode .planet-control:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .planet-name {
+    color: #666;
+}
+
+body.light-mode .speed-slider {
+    background: #CCC;
+}
+
+body.light-mode .speed-slider:hover {
+    background: #DDD;
+}
+
+body.light-mode .speed-slider::-webkit-slider-thumb,
+body.light-mode .speed-slider::-moz-range-thumb {
+    background: #444;
+}
+
+body.light-mode .speed-value {
+    color: #555;
+}
+
+body.light-mode .global-controls {
+    border-top-color: #DDD;
+}
+
+body.light-mode .control-button {
+    background: #E8E8E8;
+    color: #444;
+    border: 1px solid #DDD;
+}
+
+body.light-mode .control-button:hover {
+    background: #D8D8D8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .control-button.pause {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+body.light-mode .control-button.pause:hover {
+    background: #ff5252;
+}
+
+body.light-mode .loading {
+    color: #555;
+}
+
+body.light-mode .planet-tooltip {
+    background: rgba(255, 255, 255, 0.95);
+    color: #444;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .planet-tooltip .tooltip-name {
+    color: #666;
+}
+
+body.light-mode .planet-tooltip .tooltip-description {
+    color: #777;
+}
+
+/* Scrollbar styling for controls panel in Light Mode */
+body.light-mode #controls::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode #controls::-webkit-scrollbar-thumb {
+    background: #999;
+}
+
+body.light-mode #controls::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
